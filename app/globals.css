@@ -32,3 +32,32 @@ body {
   background: rgba(255, 77, 77, 0.36);
   color: white;
 }
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.glass-card {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+}
+
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+img[alt="OSS logo"] {
+  animation: floatSoft 8s ease-in-out infinite;
+}

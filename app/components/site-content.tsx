@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PageShell } from './page-shell';
 
 type PageKey = 'home' | 'privacy' | 'terms' | 'delete-account';
@@ -20,12 +21,12 @@ const featureList = {
     'Nauka oparta na filmach',
     'Planowanie treningów',
     'Frekwencja',
-    'Biblioteka technik',
-    'Płatności',
-    'Postępy zawodników',
+    'Historia treningów',
     'Powiadomienia',
-    'Statystyki',
-    'Zarządzanie programem technicznym',
+    'Postępy zawodników',
+    'Biblioteka technik',
+    'Planowanie treningów',
+    'Zarządzanie grupami',
   ],
   en: [
     'Coach-to-athlete connection',
@@ -33,13 +34,13 @@ const featureList = {
     'Private technique library',
     'Video-based learning',
     'Training planning',
-    'Attendance',
-    'Technique library',
-    'Payments',
-    'Athlete progress',
+    'Attendance tracking',
+    'Training history',
     'Notifications',
-    'Statistics',
-    'Technical curriculum management',
+    'Athlete progress',
+    'Technique library',
+    'Training planning',
+    'Group management',
   ],
 };
 
@@ -78,6 +79,97 @@ const reasons = {
     {
       title: 'Built specifically for Brazilian Jiu-Jitsu',
       body: 'OSS is designed around the real needs of coaches and athletes in this discipline.',
+    },
+  ],
+};
+
+const spotlightPoints = {
+  pl: [
+    {
+      title: 'Zaproszenia e-mail',
+      body: 'Trenerzy zapraszają zawodników i grupy dołączenia do OSS w kilka sekund, bez złożonych konfiguracji.',
+    },
+    {
+      title: 'Przegląd treningów',
+      body: 'Zawodnicy widzą poprzednią sesję oraz nadchodzący plan treningowy w jednym, uporządkowanym miejscu.',
+    },
+    {
+      title: 'Zarządzanie zespołem',
+      body: 'Pracuj z grupami i indywidualnymi zawodnikami, zachowując pełną kontrolę nad dostępem i komunikacją.',
+    },
+    {
+      title: 'Przyszłość AI',
+      body: 'OSS jest już przygotowane na przyszłą analizę postępów zawodników z wykorzystaniem AI.',
+    },
+  ],
+  en: [
+    {
+      title: 'Email invitations',
+      body: 'Coaches invite athletes and training groups in seconds, without complicated setup or brittle admin work.',
+    },
+    {
+      title: 'Training overview',
+      body: 'Athletes can review the previous session and upcoming plan from one calm, focused experience.',
+    },
+    {
+      title: 'Team management',
+      body: 'Work with groups and individual athletes while keeping access, workflow, and communication streamlined.',
+    },
+    {
+      title: 'AI-ready future',
+      body: 'OSS is already designed for future athlete progress analysis powered by AI.',
+    },
+  ],
+};
+
+const stats = {
+  pl: [
+    { value: '100%', label: 'kontrola nad komunikacją' },
+    { value: '24/7', label: 'dostęp do materiałów' },
+    { value: '∞', label: 'możliwości rozwoju' },
+  ],
+  en: [
+    { value: '100%', label: 'control over communication' },
+    { value: '24/7', label: 'access to training materials' },
+    { value: '∞', label: 'room to grow' },
+  ],
+};
+
+const faqItems = {
+  pl: [
+    {
+      question: 'Czy OSS działa dla małych klubów i większych organizacji?',
+      answer: 'Tak. OSS jest projektowane tak, aby dobrze wspierać zarówno małe grupy treningowe, jak i większe kluby z wieloma zawodnikami, trenerami i działaniami.',
+    },
+    {
+      question: 'Czy mogę tworzyć własne bazy technik i materiały?',
+      answer: 'Tak. Trenerzy mogą budować prywatne bazy technik z filmami, zdjęciami, opisami i kategoriami, które są dostępne tylko dla wybranych grup lub zawodników.',
+    },
+    {
+      question: 'Czy zawodnicy mają dostęp do historii treningów?',
+      answer: 'Tak. Zawodnicy mogą przeglądać poprzednie treningi, nadchodzące plany i ważne informacje bezpośrednio w aplikacji.',
+    },
+    {
+      question: 'Czy OSS jest gotowe na przyszłość?',
+      answer: 'Tak. Platforma jest rozwijana z myślą o przyszłych analitykach postępów zawodników, automatyzacji oraz jeszcze głębszej integracji AI.',
+    },
+  ],
+  en: [
+    {
+      question: 'Does OSS work for small clubs and larger organizations?',
+      answer: 'Yes. OSS is designed to support both smaller training groups and larger clubs with many athletes, coaches, and ongoing operations.',
+    },
+    {
+      question: 'Can I build my own technique databases and materials?',
+      answer: 'Yes. Coaches can create private technique libraries with videos, photos, descriptions, and categories that remain available only to selected groups or athletes.',
+    },
+    {
+      question: 'Do athletes have access to training history?',
+      answer: 'Yes. Athletes can review previous sessions, upcoming plans, and important notes directly in the app.',
+    },
+    {
+      question: 'Is OSS future-ready?',
+      answer: 'Yes. The platform is being developed with future athlete progress analytics, automation, and deeper AI integrations in mind.',
     },
   ],
 };
@@ -425,7 +517,32 @@ const content: Record<Locale, ContentMap> = {
 
 export function SiteContent({ page }: SiteContentProps) {
   const [language, setLanguage] = useState<Locale>('en');
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const currentPage = page;
+
+  useEffect(() => {
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+
+    if (!revealElements.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.16 },
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
 
   const homeContent = content[language].home;
   const legalContent =
@@ -438,50 +555,76 @@ export function SiteContent({ page }: SiteContentProps) {
   return (
     <PageShell language={language} setLanguage={setLanguage}>
       {currentPage === 'home' ? (
-        <>
-          <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center rounded-full border border-[#ff4d4d]/30 bg-[#ff4d4d]/10 px-4 py-2 text-sm font-medium text-[#ff8f8f]">
-                {homeContent.badge}
-              </div>
-              <div className="space-y-5">
-                <h1 className="max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
-                  {homeContent.title}
-                </h1>
-                <p className="max-w-2xl text-lg leading-8 text-zinc-300 sm:text-xl">{homeContent.subtitle}</p>
-                <p className="max-w-2xl text-base leading-7 text-zinc-400">{homeContent.body}</p>
-              </div>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/contact" className="rounded-full bg-[#ff4d4d] px-6 py-3 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#ff6b6b]">
-                  {homeContent.ctaPrimary}
-                </Link>
-                <Link href="/privacy-policy" className="rounded-full border border-white/15 px-6 py-3 font-semibold text-zinc-200 transition duration-300 hover:-translate-y-0.5 hover:border-[#ff4d4d] hover:text-[#ff8f8f]">
-                  {homeContent.ctaSecondary}
-                </Link>
-              </div>
+        <div className="space-y-24">
+          <section className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(255,77,77,0.2),_transparent_40%),linear-gradient(135deg,rgba(255,255,255,0.10),rgba(15,15,15,0.68))] p-8 shadow-[0_25px_80px_rgba(0,0,0,0.35)] sm:p-10 lg:p-16">
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+              <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#ff4d4d]/25 blur-3xl" />
+              <div className="absolute bottom-0 right-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+              <Image
+                src="/oss-logo.svg"
+                alt="OSS logo"
+                width={640}
+                height={640}
+                priority
+                className="absolute right-[-4rem] top-[-2rem] h-[24rem] w-[24rem] max-w-none opacity-20 sm:h-[28rem] sm:w-[28rem]"
+              />
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-[#ff4d4d]/10 p-8 shadow-2xl shadow-black/40 transition duration-300 hover:-translate-y-1">
-              <div className="space-y-4">
-                <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">North Industrie</p>
-                <h2 className="text-2xl font-semibold text-white">{language === 'pl' ? 'Nowoczesne operacje, spokojny rozwój' : 'Modern operations, calmer growth'}</h2>
-                <p className="text-zinc-300">
-                  {language === 'pl'
-                    ? 'Zastąp rozproszone narzędzia jedną elegancką platformą do zarządzania treningami, płatnościami i zaangażowaniem.'
-                    : 'Replace scattered tools with one elegant system that helps teams manage training, payments, and engagement in real time.'}
-                </p>
+            <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+              <div className="space-y-8" data-reveal>
+                <div className="inline-flex items-center rounded-full border border-[#ff4d4d]/30 bg-[#ff4d4d]/10 px-4 py-2 text-sm font-medium text-[#ff8f8f]">
+                  {homeContent.badge}
+                </div>
+                <div className="space-y-5">
+                  <h1 className="max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+                    {homeContent.title}
+                  </h1>
+                  <p className="max-w-2xl text-lg leading-8 text-zinc-300 sm:text-xl">{homeContent.subtitle}</p>
+                  <p className="max-w-2xl text-base leading-7 text-zinc-400">{homeContent.body}</p>
+                </div>
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/contact" className="rounded-full bg-[#ff4d4d] px-6 py-3 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#ff6b6b]">
+                    {homeContent.ctaPrimary}
+                  </Link>
+                  <a href="#oss" className="rounded-full border border-white/15 px-6 py-3 font-semibold text-zinc-200 transition duration-300 hover:-translate-y-0.5 hover:border-[#ff4d4d] hover:text-[#ff8f8f]">
+                    {homeContent.ctaSecondary}
+                  </a>
+                </div>
               </div>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {featureList[language].slice(0, 4).map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-black/20 p-4 text-sm text-zinc-200 transition duration-300 hover:border-[#ff4d4d]/60">
-                    {item}
-                  </div>
-                ))}
+
+              <div className="glass-card rounded-[2rem] border border-white/10 bg-white/10 p-6 backdrop-blur-xl" data-reveal>
+                <div className="space-y-4">
+                  <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">North Industrie</p>
+                  <h2 className="text-2xl font-semibold text-white">
+                    {language === 'pl' ? 'Nowoczesne operacje, spokojny rozwój' : 'Modern operations, calmer growth'}
+                  </h2>
+                  <p className="text-zinc-300">
+                    {language === 'pl'
+                      ? 'Zastąp rozproszone narzędzia jedną elegancką platformą do zarządzania treningami, komunikacją i zaangażowaniem.'
+                      : 'Replace scattered tools with one elegant system for training, communication, and engagement in real time.'}
+                  </p>
+                </div>
+                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  {featureList[language].slice(0, 4).map((item) => (
+                    <div key={item} className="rounded-2xl border border-white/10 bg-black/25 p-4 text-sm text-zinc-200 transition duration-300 hover:border-[#ff4d4d]/60">
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
 
-          <section id="about" className="mt-24 grid gap-8 rounded-[2rem] border border-white/10 bg-white/5 p-8 transition duration-300 hover:border-[#ff4d4d]/30 lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
+          <section className="grid gap-6 lg:grid-cols-3" data-reveal>
+            {stats[language].map((stat) => (
+              <div key={stat.label} className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl">
+                <p className="text-3xl font-semibold text-white">{stat.value}</p>
+                <p className="mt-2 text-sm uppercase tracking-[0.28em] text-zinc-400">{stat.label}</p>
+              </div>
+            ))}
+          </section>
+
+          <section id="about" className="grid gap-8 rounded-[2rem] border border-white/10 bg-white/5 p-8 transition duration-300 hover:border-[#ff4d4d]/30 lg:grid-cols-[0.9fr_1.1fr] lg:p-12" data-reveal>
             <div>
               <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'O North Industrie' : 'About North Industrie'}</p>
               <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{homeContent.aboutTitle}</h2>
@@ -489,66 +632,67 @@ export function SiteContent({ page }: SiteContentProps) {
             <p className="text-lg leading-8 text-zinc-300">{homeContent.aboutBody}</p>
           </section>
 
-          <section id="oss" className="mt-24">
+          <section id="oss" className="rounded-[2rem] border border-white/10 bg-black/20 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.28)] lg:p-12" data-reveal>
             <div className="mb-8 max-w-2xl">
               <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Aplikacja OSS' : 'OSS Application'}</p>
               <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{homeContent.featuresTitle}</h2>
+              <p className="mt-4 text-lg leading-8 text-zinc-300">
+                {language === 'pl'
+                  ? 'OSS łączy trenerów z zawodnikami i grupami treningowymi za pomocą zaproszeń e-mail, udostępniając jednocześnie prywatne materiały, plany treningowe i historię postępów.'
+                  : 'OSS connects coaches with athletes and training groups through email invitations, while keeping private materials, plans, and progress history organized in one place.'}
+              </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {featureList[language].map((feature) => (
-                <div key={feature} className="rounded-2xl border border-white/10 bg-black/20 p-6 transition duration-300 hover:-translate-y-1 hover:border-[#ff4d4d]/60 hover:bg-[#ff4d4d]/10">
+                <div key={feature} className="rounded-2xl border border-white/10 bg-white/5 p-6 transition duration-300 hover:-translate-y-1 hover:border-[#ff4d4d]/60 hover:bg-[#ff4d4d]/10">
                   <p className="text-lg font-medium text-white">{feature}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 grid gap-6 lg:grid-cols-2">
+              {spotlightPoints[language].map((item) => (
+                <div key={item.title} className="rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-white/10 to-black/20 p-6">
+                  <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 leading-7 text-zinc-300">{item.body}</p>
                 </div>
               ))}
             </div>
           </section>
 
-          <section id="connection" className="mt-24 rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:p-12">
-            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-              <div>
-                <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Połączenie trenera i zawodnika' : 'Coach & Athlete Connection'}</p>
-                <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{language === 'pl' ? 'Bezpieczne połączenie z indywidualnymi zawodnikami lub całymi grupami' : 'Secure connection with individual athletes or full training groups'}</h2>
-                <p className="mt-4 text-lg leading-8 text-zinc-300">
+          <section id="screenshots" className="rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:p-12" data-reveal>
+            <div className="mb-8 max-w-2xl">
+              <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Prezentacja aplikacji' : 'Product preview'}</p>
+              <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
+                {language === 'pl' ? 'Widok OSS, który wygląda premium i działa z przyjemnością' : 'A premium-looking OSS experience that feels effortless to use'}
+              </h2>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-2">
+              <div className="rounded-[1.5rem] border border-white/10 bg-black/25 p-5">
+                <Image src="/oss-dashboard-1.svg" alt="OSS coach dashboard preview" width={1200} height={760} className="w-full rounded-[1rem] border border-white/10" />
+                <h3 className="mt-5 text-xl font-semibold text-white">
+                  {language === 'pl' ? 'Panel trenera' : 'Coach dashboard'}
+                </h3>
+                <p className="mt-3 leading-7 text-zinc-300">
                   {language === 'pl'
-                    ? 'OSS pozwala trenerom bezpiecznie łączyć się z zawodnikami po prostu poprzez dodanie ich adresu e-mail. Po połączeniu zawodnicy mają dostęp do podsumowania poprzedniego treningu, planu kolejnego treningu, technik udostępnionych przez trenera, zdjęć i filmów, notatek, ogłoszeń oraz przypisanej grupy treningowej.'
-                    : 'OSS lets coaches securely connect with athletes simply by adding their email address. Once connected, athletes can access a summary of the previous training session, the plan for the upcoming one, techniques shared by the coach, photos and videos, coach notes, important announcements, and their assigned training group.'}
+                    ? 'Zarządzaj grupami, planami treningowymi, frekwencją i historią bez rozpraszania uwagi.'
+                    : 'Manage groups, plans, attendance, and history without adding friction to your daily routine.'}
                 </p>
               </div>
-              <div className="rounded-[1.5rem] border border-white/10 bg-black/20 p-6">
-                <p className="text-sm uppercase tracking-[0.3em] text-[#ff8f8f]">{language === 'pl' ? 'Jak działa' : 'How it works'}</p>
-                <ul className="mt-4 space-y-3 text-zinc-300">
-                  <li>• {language === 'pl' ? 'Trener tworzy grupy zawodników i zarządza nimi w prosty sposób.' : 'The coach organizes athletes into groups and manages them with clarity.'}</li>
-                  <li>• {language === 'pl' ? 'Informacje są udostępniane tylko wybranym zawodnikom lub konkretnym grupom.' : 'Information is shared only with selected athletes or specific training groups.'}</li>
-                  <li>• {language === 'pl' ? 'Komunikacja pozostaje uporządkowana, bezpieczna i łatwa do śledzenia.' : 'Communication stays organized, secure, and easy to follow.'}</li>
-                </ul>
+              <div className="rounded-[1.5rem] border border-white/10 bg-black/25 p-5">
+                <Image src="/oss-dashboard-2.svg" alt="OSS athlete view preview" width={1200} height={760} className="w-full rounded-[1rem] border border-white/10" />
+                <h3 className="mt-5 text-xl font-semibold text-white">
+                  {language === 'pl' ? 'Widok zawodnika' : 'Athlete experience'}
+                </h3>
+                <p className="mt-3 leading-7 text-zinc-300">
+                  {language === 'pl'
+                    ? 'Zawodnicy mają szybki dostęp do poprzedniego treningu, nadchodzących planów i prywatnych materiałów technicznych.'
+                    : 'Athletes get immediate access to the previous session, upcoming plans, and private technique materials.'}
+                </p>
               </div>
             </div>
           </section>
 
-          <section id="techniques" className="mt-24 rounded-[2rem] border border-white/10 bg-gradient-to-br from-black/60 to-[#1a1a1a] p-8 lg:p-12">
-            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-              <div>
-                <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Biblioteka technik' : 'Technique Library'}</p>
-                <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{language === 'pl' ? 'Prywatna baza technik dostępna zawsze, także poza salą' : 'A private technique database available whenever athletes need to review it'}</h2>
-                <p className="mt-4 text-lg leading-8 text-zinc-300">
-                  {language === 'pl'
-                    ? 'Każdy trener może tworzyć kompletnie prywatną bazę technik. Każda technika może zawierać filmy, zdjęcia, szczegółowe opisy, kategorie, pozycje i tagi. Zawodnicy mogą przeglądać materiały w dowolnym czasie i kontynuować naukę poza salą.'
-                    : 'Every coach can create a completely private technique database. Each technique can include videos, photos, detailed descriptions, categories, positions, and tags. Athletes can review techniques at any time and continue learning outside the gym.'}
-                </p>
-              </div>
-              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
-                <p className="text-sm uppercase tracking-[0.3em] text-[#ff8f8f]">{language === 'pl' ? 'Co zawiera' : 'What it includes'}</p>
-                <ul className="mt-4 space-y-3 text-zinc-300">
-                  <li>• {language === 'pl' ? 'Filmy i zdjęcia technik' : 'Videos and photos'}</li>
-                  <li>• {language === 'pl' ? 'Szczegółowe opisy i instrukcje' : 'Detailed descriptions and notes'}</li>
-                  <li>• {language === 'pl' ? 'Kategorie, pozycje i tagi' : 'Categories, positions, and tags'}</li>
-                  <li>• {language === 'pl' ? 'Dostęp dla wybranych grup lub zawodników' : 'Access for selected groups or athletes'}</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section id="why" className="mt-24 rounded-[2rem] border border-white/10 bg-gradient-to-br from-black/60 to-[#1a1a1a] p-8 lg:p-12">
+          <section id="why" className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-black/60 to-[#1a1a1a] p-8 lg:p-12" data-reveal>
             <div className="mb-8 max-w-2xl">
               <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{homeContent.whyTitle}</p>
               <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{language === 'pl' ? 'Dobrze zaprojektowane systemy dla ambitnych klubów' : 'Thoughtful systems for ambitious clubs'}</h2>
@@ -563,20 +707,66 @@ export function SiteContent({ page }: SiteContentProps) {
             </div>
           </section>
 
-          <section id="contact" className="mt-24 rounded-[2rem] border border-[#ff4d4d]/20 bg-[#ff4d4d]/10 p-8 lg:p-12">
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <section id="faq" className="rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:p-12" data-reveal>
+            <div className="mb-8 max-w-2xl">
+              <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">FAQ</p>
+              <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
+                {language === 'pl' ? 'Najczęściej zadawane pytania' : 'Frequently asked questions'}
+              </h2>
+            </div>
+            <div className="space-y-3">
+              {faqItems[language].map((item, index) => {
+                const isOpen = activeFaq === index;
+
+                return (
+                  <div key={item.question} className="rounded-2xl border border-white/10 bg-black/20">
+                    <button
+                      type="button"
+                      onClick={() => setActiveFaq(isOpen ? null : index)}
+                      className="flex w-full items-center justify-between px-5 py-4 text-left text-white"
+                    >
+                      <span className="text-lg font-medium">{item.question}</span>
+                      <span className="text-2xl text-[#ff8f8f]">{isOpen ? '−' : '+'}</span>
+                    </button>
+                    {isOpen ? <p className="px-5 pb-5 leading-7 text-zinc-300">{item.answer}</p> : null}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          <section id="contact" className="rounded-[2rem] border border-[#ff4d4d]/20 bg-[#ff4d4d]/10 p-8 lg:p-12" data-reveal>
+            <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
               <div className="max-w-2xl">
                 <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Kontakt' : 'Contact'}</p>
                 <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{homeContent.contactTitle}</h2>
                 <p className="mt-4 text-lg leading-8 text-zinc-200">{homeContent.contactBody}</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a href="mailto:northindustrie@gmail.com" className="rounded-full border border-white/15 bg-white/10 px-5 py-3 font-medium text-white transition hover:bg-white/20">
+                    {language === 'pl' ? 'Napisz do nas' : 'Email us'}
+                  </a>
+                  <a href="tel:+48500138948" className="rounded-full border border-white/15 px-5 py-3 font-medium text-zinc-200 transition hover:border-[#ff8f8f] hover:text-white">
+                    {language === 'pl' ? 'Zadzwoń' : 'Call us'}
+                  </a>
+                </div>
               </div>
-              <div className="space-y-3 text-zinc-100">
-                <a href="mailto:northindustrie@gmail.com" className="block text-lg transition duration-300 hover:text-white">northindustrie@gmail.com</a>
-                <a href="tel:+48500138948" className="block text-lg transition duration-300 hover:text-white">+48 500 138 948</a>
+              <div className="space-y-4 rounded-[1.5rem] border border-white/10 bg-black/20 p-6 text-zinc-100">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.3em] text-[#ff8f8f]">Email</p>
+                  <a href="mailto:northindustrie@gmail.com" className="mt-2 block text-lg transition hover:text-white">northindustrie@gmail.com</a>
+                </div>
+                <div>
+                  <p className="text-sm uppercase tracking-[0.3em] text-[#ff8f8f]">Phone</p>
+                  <a href="tel:+48500138948" className="mt-2 block text-lg transition hover:text-white">+48 500 138 948</a>
+                </div>
+                <div>
+                  <p className="text-sm uppercase tracking-[0.3em] text-[#ff8f8f]">{language === 'pl' ? 'Dostępność' : 'Availability'}</p>
+                  <p className="mt-2 text-zinc-300">{language === 'pl' ? 'Demos i wdrożenia na żądanie' : 'Demos and onboarding on request'}</p>
+                </div>
               </div>
             </div>
           </section>
-        </>
+        </div>
       ) : (
         <div className="mx-auto max-w-4xl space-y-8 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-black/30 sm:p-10">
           <div className="space-y-3">
