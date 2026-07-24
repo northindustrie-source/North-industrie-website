@@ -659,6 +659,32 @@ export function SiteContent({ page }: SiteContentProps) {
             </div>
           </section>
 
+          <section className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 to-black/20 p-8 lg:p-12" data-reveal>
+            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+              <div className="max-w-2xl">
+                <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Wideo produktu' : 'Product video'}</p>
+                <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
+                  {language === 'pl' ? 'Zobacz OSS w ruchu' : 'See OSS in motion'}
+                </h2>
+                <p className="mt-4 text-lg leading-8 text-zinc-300">
+                  {language === 'pl'
+                    ? 'To krótkie wideo pokazuje, jak platforma daje trenerom i zawodnikom spokojny, uporządkowany workflow od pierwszego kontaktu po codzienne planowanie.'
+                    : 'This short video shows how the platform gives coaches and athletes a calm, structured workflow from first contact through daily planning.'}
+                </p>
+              </div>
+              <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/25 p-3 shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
+                <video
+                  src="/a1a0fcdd-8323-4207-bd22-556dd129e62e.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="aspect-video w-full rounded-[1.25rem] object-cover"
+                />
+              </div>
+            </div>
+          </section>
+
           <section id="screenshots" className="rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:p-12" data-reveal>
             <div className="mb-8 max-w-2xl">
               <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Prezentacja aplikacji' : 'Product preview'}</p>
@@ -667,8 +693,15 @@ export function SiteContent({ page }: SiteContentProps) {
               </h2>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
-              <div className="rounded-[1.5rem] border border-white/10 bg-black/25 p-5">
-                <Image src="/oss-dashboard-1.svg" alt="OSS coach dashboard preview" width={1200} height={760} className="w-full rounded-[1rem] border border-white/10" />
+              <div className="rounded-[1.75rem] border border-white/10 bg-black/25 p-5">
+                <div className="mx-auto flex max-w-[320px] justify-center rounded-[2.2rem] border border-white/10 bg-zinc-950 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+                  <div className="w-full rounded-[1.7rem] border border-white/10 bg-black p-2">
+                    <div className="mb-3 flex justify-center">
+                      <div className="h-5 w-24 rounded-full bg-black/80" />
+                    </div>
+                    <Image src="/Screeny/0e39e543-923f-4e69-97c3-32484dc4722d (1).jpg" alt="OSS coach dashboard preview" width={720} height={1280} className="h-[480px] w-full rounded-[1.2rem] object-cover" />
+                  </div>
+                </div>
                 <h3 className="mt-5 text-xl font-semibold text-white">
                   {language === 'pl' ? 'Panel trenera' : 'Coach dashboard'}
                 </h3>
@@ -678,8 +711,15 @@ export function SiteContent({ page }: SiteContentProps) {
                     : 'Manage groups, plans, attendance, and history without adding friction to your daily routine.'}
                 </p>
               </div>
-              <div className="rounded-[1.5rem] border border-white/10 bg-black/25 p-5">
-                <Image src="/oss-dashboard-2.svg" alt="OSS athlete view preview" width={1200} height={760} className="w-full rounded-[1rem] border border-white/10" />
+              <div className="rounded-[1.75rem] border border-white/10 bg-black/25 p-5">
+                <div className="mx-auto flex max-w-[320px] justify-center rounded-[2.2rem] border border-white/10 bg-zinc-950 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+                  <div className="w-full rounded-[1.7rem] border border-white/10 bg-black p-2">
+                    <div className="mb-3 flex justify-center">
+                      <div className="h-5 w-24 rounded-full bg-black/80" />
+                    </div>
+                    <Image src="/Screeny/cb0a21e9-b502-4e9f-bfaf-5fe1c6b63a17 (1).jpg" alt="OSS athlete view preview" width={720} height={1280} className="h-[480px] w-full rounded-[1.2rem] object-cover" />
+                  </div>
+                </div>
                 <h3 className="mt-5 text-xl font-semibold text-white">
                   {language === 'pl' ? 'Widok zawodnika' : 'Athlete experience'}
                 </h3>
