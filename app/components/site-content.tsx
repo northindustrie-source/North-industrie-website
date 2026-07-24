@@ -560,14 +560,9 @@ export function SiteContent({ page }: SiteContentProps) {
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
               <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#ff4d4d]/25 blur-3xl" />
               <div className="absolute bottom-0 right-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-              <Image
-                src="/525e1872-284e-408f-9244-7fcbb480f7c2.jpg"
-                alt="OSS product visual"
-                width={1200}
-                height={900}
-                priority
-                className="absolute right-[-2rem] top-[-1rem] h-[20rem] w-[20rem] max-w-none rounded-[2rem] object-cover opacity-90 shadow-[0_20px_60px_rgba(0,0,0,0.35)] sm:h-[24rem] sm:w-[24rem] lg:h-[28rem] lg:w-[28rem]"
-              />
+              <div className="absolute right-[-1rem] top-[-1rem] h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle_at_30%_30%,_rgba(255,255,255,0.35),_transparent_25%),linear-gradient(135deg,_#ff5f5f_0%,_#ff2f2f_55%,_#b30000_100%)] opacity-95 blur-[1px] sm:h-[22rem] sm:w-[22rem] lg:h-[26rem] lg:w-[26rem]" />
+              <div className="absolute right-[1.2rem] top-[1.2rem] h-[12rem] w-[12rem] rounded-full border border-white/20 bg-white/10 blur-[2px] sm:h-[15rem] sm:w-[15rem] lg:h-[18rem] lg:w-[18rem]" />
+              <div className="absolute right-[3rem] top-[3rem] h-[8rem] w-[8rem] rounded-full border border-white/15 bg-white/20 sm:h-[10rem] sm:w-[10rem] lg:h-[12rem] lg:w-[12rem]" />
             </div>
 
             <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
