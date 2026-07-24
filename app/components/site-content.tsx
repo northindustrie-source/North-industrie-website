@@ -15,70 +15,70 @@ type Locale = 'pl' | 'en';
 
 const featureList = {
   pl: [
-    'Połączenie trener–zawodnik',
-    'Zarządzanie grupą',
-    'Prywatna biblioteka technik',
-    'Nauka oparta na filmach',
-    'Planowanie treningów',
-    'Frekwencja',
-    'Historia treningów',
-    'Powiadomienia',
-    'Postępy zawodników',
-    'Biblioteka technik',
-    'Planowanie treningów',
-    'Zarządzanie grupami',
+    'Zaproszenia e-mail dla zawodników',
+    'Zarządzanie grupami i indywidualnymi zawodnikami',
+    'Prywatna biblioteka technik z filmami',
+    'Przegląd poprzedniego treningu i kolejnych planów',
+    'Planowanie treningów w jednym miejscu',
+    'Śledzenie frekwencji',
+    'Historia treningów i postępów',
+    'Powiadomienia dla trenerów i zawodników',
+    'Prywatne materiały techniczne',
+    'Tworzenie własnych baz technik',
+    'Komunikacja w ramach grupy',
+    'Przyszłe analizy AI postępów',
   ],
   en: [
-    'Coach-to-athlete connection',
-    'Group management',
-    'Private technique library',
-    'Video-based learning',
-    'Training planning',
+    'Email invitations for athletes',
+    'Group and individual athlete management',
+    'Private technique library with video support',
+    'Review of previous sessions and upcoming plans',
+    'Training planning in one place',
     'Attendance tracking',
-    'Training history',
-    'Notifications',
-    'Athlete progress',
-    'Technique library',
-    'Training planning',
-    'Group management',
+    'Training and progress history',
+    'Notifications for coaches and athletes',
+    'Private technical materials',
+    'Create your own technique databases',
+    'Group-based communication',
+    'Future AI progress analysis',
   ],
 };
 
 const reasons = {
   pl: [
     {
-      title: 'Lepsza komunikacja między trenerem a zawodnikiem',
-      body: 'Utrzymuj kontakt z zawodnikami i grupami treningowymi w jednym miejscu, bez chaosu i rozproszonych wiadomości.',
+      title: 'Spójna komunikacja z każdym zawodnikiem',
+      body: 'Zachowuj kontakt z zawodnikami i grupami bez rozproszenia w wiadomościach, mailach i notatkach na różnych platformach.',
     },
     {
-      title: 'Spersonalizowane doświadczenie nauki',
-      body: 'Dostarczaj zawodnikom indywidualne materiały, plany treningów i techniki dopasowane do ich potrzeb.',
+      title: 'Uczenie oparte na jasnych materiałach',
+      body: 'Każdy zawodnik dostaje dostęp do planu, poprzedniego treningu i prywatnych technik w jednym miejscu.',
     },
     {
-      title: 'Kompleksowa platforma edukacji technicznej',
-      body: 'Łącz edukację na macie, w domu i poza salą, tworząc pełen proces nauki dla całego klubu.',
+      title: 'Pełne wsparcie dla pracy trenera',
+      body: 'OSS ułatwia zarządzanie grupami, frekwencją, historią treningów i materiałami edukacyjnymi bez zbędnego chaosu.',
     },
     {
-      title: 'Zbudowane specjalnie dla brazylijskiego jiu-jitsu',
-      body: 'OSS zostało zaprojektowane z myślą o realnych potrzebach trenerów i zawodników tej dyscypliny.',
+      title: 'Dobrze dopasowane do jiu-jitsu',
+      body: 'Platforma została zaprojektowana z myślą o realnym rytmie pracy trenerów i potrzebach zawodników w tej dyscyplinie.',
     },
   ],
   en: [
     {
-      title: 'Better communication between coaches and athletes',
-      body: 'Keep every athlete and training group connected in one place without scattered messages or missed updates.',
+      title: 'Clear communication with every athlete',
+      body: 'Keep athletes and training groups connected without scattered messages, emails, and notes across different tools.',
     },
     {
-      title: 'Personalized learning experience',
-      body: 'Deliver tailored plans, notes, and techniques so each athlete can learn with more clarity and focus.',
+      title: 'Learning built around clear materials',
+      body: 'Every athlete can access plans, previous sessions, and private techniques from one structured experience.',
     },
     {
-      title: 'Complete technical education platform',
-      body: 'Bring training sessions, review materials, and long-term development together in one premium experience.',
+      title: 'Complete support for coaching work',
+      body: 'OSS simplifies group management, attendance, training history, and educational materials without unnecessary friction.',
     },
     {
-      title: 'Built specifically for Brazilian Jiu-Jitsu',
-      body: 'OSS is designed around the real needs of coaches and athletes in this discipline.',
+      title: 'Built for the realities of Jiu-Jitsu',
+      body: 'The platform is shaped around the real workflow of coaches and the needs of athletes in this discipline.',
     },
   ],
 };
@@ -86,38 +86,38 @@ const reasons = {
 const spotlightPoints = {
   pl: [
     {
-      title: 'Zaproszenia e-mail',
-      body: 'Trenerzy zapraszają zawodników i grupy dołączenia do OSS w kilka sekund, bez złożonych konfiguracji.',
+      title: 'Zaproszenia e-mail w kilka sekund',
+      body: 'Trenerzy dodają zawodników i grupy do OSS bez skomplikowanej rejestracji i bez rozpraszania uwagi od treningu.',
     },
     {
-      title: 'Przegląd treningów',
-      body: 'Zawodnicy widzą poprzednią sesję oraz nadchodzący plan treningowy w jednym, uporządkowanym miejscu.',
+      title: 'Przegląd poprzedniego i kolejnego treningu',
+      body: 'Zawodnicy mają szybki wgląd w ostatnią sesję, nadchodzący plan i najważniejsze informacje dla swojej grupy.',
     },
     {
-      title: 'Zarządzanie zespołem',
-      body: 'Pracuj z grupami i indywidualnymi zawodnikami, zachowując pełną kontrolę nad dostępem i komunikacją.',
+      title: 'Zarządzanie grupami i zawodnikami',
+      body: 'Trener może pracować z całymi grupami albo indywidualnymi zawodnikami, zachowując pełną kontrolę nad dostępem i komunikacją.',
     },
     {
-      title: 'Przyszłość AI',
-      body: 'OSS jest już przygotowane na przyszłą analizę postępów zawodników z wykorzystaniem AI.',
+      title: 'Przyszłość z AI',
+      body: 'OSS jest już projektowane pod kątem przyszłych analiz postępów zawodników i jeszcze bardziej inteligentnego wsparcia dla trenerów.',
     },
   ],
   en: [
     {
-      title: 'Email invitations',
-      body: 'Coaches invite athletes and training groups in seconds, without complicated setup or brittle admin work.',
+      title: 'Email invitations in seconds',
+      body: 'Coaches add athletes and groups to OSS without lengthy setup and without pulling focus away from training.',
     },
     {
-      title: 'Training overview',
-      body: 'Athletes can review the previous session and upcoming plan from one calm, focused experience.',
+      title: 'A clear view of past and upcoming training',
+      body: 'Athletes can quickly review the latest session, the next plan, and the key updates relevant to their group.',
     },
     {
-      title: 'Team management',
-      body: 'Work with groups and individual athletes while keeping access, workflow, and communication streamlined.',
+      title: 'Manage groups and individual athletes',
+      body: 'A coach can work with full groups or individual athletes while maintaining full control over access and communication.',
     },
     {
-      title: 'AI-ready future',
-      body: 'OSS is already designed for future athlete progress analysis powered by AI.',
+      title: 'Built for the AI future',
+      body: 'OSS is already being shaped around future athlete progress analysis and smarter support for coaches.',
     },
   ],
 };
@@ -212,20 +212,20 @@ const content: Record<Locale, ContentMap> = {
   pl: {
     home: {
       badge: 'Premiumowe rozwiązanie OSS dla trenerów, klubów i zawodników',
-      title: 'Tworzymy nowoczesne rozwiązania dla sportu i biznesu.',
+      title: 'Nowoczesna platforma do zarządzania treningiem i rozwojem zawodników.',
       subtitle:
-        'North Industrie rozwija OSS – kompleksową platformę dla trenerów, klubów i studentów brazylijskiego jiu-jitsu.',
-      body: 'Projektujemy eleganckie, szybkie i skalowalne narzędzia dla zespołów, które chcą rosnąć bez chaosu.',
+        'North Industrie rozwija OSS – system dla trenerów, klubów i uczniów brazylijskiego jiu-jitsu, który łączy komunikację, planowanie i edukację w jednym miejscu.',
+      body: 'Projektujemy narzędzia, które pomagają klubom działać sprawniej, lepiej komunikować się z zawodnikami i budować uporządkowany proces rozwoju.',
       ctaPrimary: 'Umów demo',
-      ctaSecondary: 'Dowiedz się więcej',
-      aboutTitle: 'Minimalistycznie. Mocno. Efektywnie.',
+      ctaSecondary: 'Poznaj OSS',
+      aboutTitle: 'Minimalistycznie. Spójnie. Efektywnie.',
       aboutBody:
-        'North Industrie buduje premiumowe doświadczenia cyfrowe dla sportu i biznesu. Łączymy spokojny design z praktycznymi workflowami, aby trenerzy mogli skupić się na ludziach, a nie na narzędziach.',
-      featuresTitle: 'Wszystko, czego potrzebuje Twój zespół',
+        'North Industrie buduje premiumowe doświadczenia cyfrowe dla sportu i biznesu. Łączymy przejrzysty design z praktycznymi workflowami, aby trenerzy mogli skupić się na pracy z ludźmi, a nie na zarządzaniu narzędziami.',
+      featuresTitle: 'Funkcje, które naprawdę wspierają codzienną pracę klubu',
       whyTitle: 'Dlaczego OSS',
-      contactTitle: 'Gotowy, by zmodernizować swoje operacje?',
+      contactTitle: 'Chcesz wdrożyć OSS w swoim klubie?',
       contactBody:
-        'Skontaktuj się z nami, aby sprawdzić, jak OSS może wspierać Twój klub i przyspieszać rozwój.',
+        'Napisz do nas, jeśli chcesz zobaczyć, jak OSS może uporządkować komunikację, treningi i rozwój zawodników w Twoim klubie.',
     },
     privacy: {
       title: 'Polityka prywatności',
@@ -364,20 +364,20 @@ const content: Record<Locale, ContentMap> = {
   en: {
     home: {
       badge: 'Premium OSS platform for coaches, clubs and athletes',
-      title: 'We create modern solutions for sport and business.',
+      title: 'A modern platform for managing training and athlete development.',
       subtitle:
-        'North Industrie develops OSS – an all-in-one platform for Brazilian Jiu-Jitsu coaches, clubs and students.',
-      body: 'We design elegant, fast, and scalable tools for teams that want to grow without complexity.',
+        'North Industrie develops OSS – a system for coaches, clubs and Brazilian Jiu-Jitsu students that brings communication, planning and education into one place.',
+      body: 'We design tools that help clubs operate more smoothly, communicate better with athletes, and build a structured development process.',
       ctaPrimary: 'Book a demo',
-      ctaSecondary: 'Learn more',
-      aboutTitle: 'Minimal by design. Powerful by default.',
+      ctaSecondary: 'Explore OSS',
+      aboutTitle: 'Minimal by design. Clear in practice.',
       aboutBody:
-        'North Industrie builds premium digital experiences for sport and business. We combine calm design with practical workflows so coaches can focus on people rather than tools.',
-      featuresTitle: 'Everything your team needs in one place',
+        'North Industrie builds premium digital experiences for sport and business. We combine calm design with practical workflows so coaches can focus on working with people instead of managing tools.',
+      featuresTitle: 'Features that support the daily work of a club',
       whyTitle: 'Why OSS',
-      contactTitle: 'Ready to modernize your operations?',
+      contactTitle: 'Would you like to bring OSS into your club?',
       contactBody:
-        'Connect with us to see how OSS can support your club and accelerate growth.',
+        'Get in touch if you want to see how OSS can organize communication, training, and athlete development in your club.',
     },
     privacy: {
       title: 'Privacy Policy',
@@ -561,12 +561,12 @@ export function SiteContent({ page }: SiteContentProps) {
               <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#ff4d4d]/25 blur-3xl" />
               <div className="absolute bottom-0 right-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
               <Image
-                src="/oss-logo.svg"
-                alt="OSS logo"
-                width={640}
-                height={640}
+                src="/525e1872-284e-408f-9244-7fcbb480f7c2.jpg"
+                alt="OSS product visual"
+                width={1200}
+                height={900}
                 priority
-                className="absolute right-[-4rem] top-[-2rem] h-[24rem] w-[24rem] max-w-none opacity-20 sm:h-[28rem] sm:w-[28rem]"
+                className="absolute right-[-2rem] top-[-1rem] h-[20rem] w-[20rem] max-w-none rounded-[2rem] object-cover opacity-90 shadow-[0_20px_60px_rgba(0,0,0,0.35)] sm:h-[24rem] sm:w-[24rem] lg:h-[28rem] lg:w-[28rem]"
               />
             </div>
 
@@ -596,12 +596,12 @@ export function SiteContent({ page }: SiteContentProps) {
                 <div className="space-y-4">
                   <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">North Industrie</p>
                   <h2 className="text-2xl font-semibold text-white">
-                    {language === 'pl' ? 'Nowoczesne operacje, spokojny rozwój' : 'Modern operations, calmer growth'}
+                    {language === 'pl' ? 'Jedno miejsce dla treningów, komunikacji i rozwoju' : 'One place for training, communication and growth'}
                   </h2>
                   <p className="text-zinc-300">
                     {language === 'pl'
-                      ? 'Zastąp rozproszone narzędzia jedną elegancką platformą do zarządzania treningami, komunikacją i zaangażowaniem.'
-                      : 'Replace scattered tools with one elegant system for training, communication, and engagement in real time.'}
+                      ? 'Zastąp rozproszone narzędzia jednym spokojnym systemem, który wspiera treningi, kontakt z zawodnikami i rozwój klubu.'
+                      : 'Replace scattered tools with one calm system that supports training, athlete communication, and club growth.'}
                   </p>
                 </div>
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -689,7 +689,7 @@ export function SiteContent({ page }: SiteContentProps) {
             <div className="mb-8 max-w-2xl">
               <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Prezentacja aplikacji' : 'Product preview'}</p>
               <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
-                {language === 'pl' ? 'Widok OSS, który wygląda premium i działa z przyjemnością' : 'A premium-looking OSS experience that feels effortless to use'}
+                {language === 'pl' ? 'Produkt, który wygląda premium i wspiera codzienną pracę' : 'A product that feels premium and supports everyday coaching work'}
               </h2>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
@@ -735,7 +735,7 @@ export function SiteContent({ page }: SiteContentProps) {
           <section id="why" className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-black/60 to-[#1a1a1a] p-8 lg:p-12" data-reveal>
             <div className="mb-8 max-w-2xl">
               <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{homeContent.whyTitle}</p>
-              <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{language === 'pl' ? 'Dobrze zaprojektowane systemy dla ambitnych klubów' : 'Thoughtful systems for ambitious clubs'}</h2>
+              <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{language === 'pl' ? 'Systemy, które pomagają klubom działać z większą klarownością' : 'Systems that help clubs operate with greater clarity'}</h2>
             </div>
             <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
               {reasons[language].map((reason) => (
