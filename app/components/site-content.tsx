@@ -372,7 +372,7 @@ const content: Record<Locale, ContentMap> = {
       ctaSecondary: 'Explore OSS',
       aboutTitle: 'Minimal by design. Clear in practice.',
       aboutBody:
-        'North Industrie builds premium digital experiences for sport and business. We combine calm design with practical workflows so coaches can focus on working with people instead of managing tools. Everything lives in one app.',
+        'North Industrie builds premium digital experiences for sport and business. We combine calm design with practical workflows so coaches can focus on working with people instead of managing tools. Everything is in one app.',
       featuresTitle: 'Features that support the daily work of a club',
       whyTitle: 'Why OSS',
       contactTitle: 'Would you like to bring OSS into your club?',
@@ -690,7 +690,7 @@ export function SiteContent({ page }: SiteContentProps) {
             <div className="mb-8 max-w-2xl">
               <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Prezentacja aplikacji' : 'Product preview'}</p>
               <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
-                {language === 'pl' ? 'Produkt premium, który wspiera codzienną pracę trenera, mnóstwo narzędzi w jednej aplikacji.' : 'A premium product that supports everyday coaching work, with lots of tools in one app.'}
+                {language === 'pl' ? 'Produkt premium, który wspiera codzienną pracę trenera, mnóstwo narzędzi w jednej aplikacji.' : 'A premium product that supports the everyday work of a coach, with a wide range of tools in one app.'}
               </h2>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
@@ -709,7 +709,7 @@ export function SiteContent({ page }: SiteContentProps) {
                 <p className="mt-3 leading-7 text-zinc-300">
                   {language === 'pl'
                     ? 'Filmy z mnóstwem technik z każdej pozycji, na każdy poziom zaawansowania, krótkie i konkretne, wszystko podzielone na kategorie.'
-                    : 'Videos with lots of techniques from every position, for every skill level, short and concrete, all organized by category.'}
+                    : 'Videos packed with techniques from every position, for every level, short and practical, all organized by category.'}
                 </p>
               </div>
               <div className="rounded-[1.75rem] border border-white/10 bg-black/25 p-5">
@@ -727,7 +727,7 @@ export function SiteContent({ page }: SiteContentProps) {
                 <p className="mt-3 leading-7 text-zinc-300">
                   {language === 'pl'
                     ? 'Twórz treningi, wybieraj techniki, twórz własne bazy technik, ustalaj czas trwania, używaj technik podczas zajęć, udostępniaj trening grupie, bądź jednemu adeptowi.'
-                    : 'Create training sessions, choose techniques, build your own technique libraries, set durations, use techniques during classes, share a session with a group or with one athlete.'}
+                    : 'Create training sessions, choose techniques, build your own technique libraries, set durations, use techniques during classes, and share a session with a group or with one athlete.'}
                 </p>
               </div>
             </div>
