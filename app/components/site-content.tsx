@@ -27,6 +27,7 @@ const featureList = {
     'Tworzenie własnych baz technik',
     'Komunikacja w ramach grupy',
     'Przyszłe analizy AI postępów',
+    'Tworzenie własnych podkategorii i struktur materiałów',
   ],
   en: [
     'Email invitations for athletes',
@@ -41,8 +42,20 @@ const featureList = {
     'Create your own technique databases',
     'Group-based communication',
     'Future AI progress analysis',
+    'Create your own subcategories and material structures',
   ],
 };
+
+const phoneScreens = [
+  '/Screeny/0e39e543-923f-4e69-97c3-32484dc4722d (1).jpg',
+  '/Screeny/1263d6fd-6617-403b-a8ab-458bfe2a42ac.jpg',
+  '/Screeny/1949f5ce-dc4a-4888-81e1-596981b084e9.jpg',
+  '/Screeny/499e1c99-8505-4f4b-bae5-1113473af91e.jpg',
+  '/Screeny/4cfe045f-13a1-4a45-a751-11b3c169a124.jpg',
+  '/Screeny/8079ac5c-09fa-4744-98c8-ce5da9e8629b.jpg',
+  '/Screeny/a0a8ce6c-88bd-429f-b5e1-fd57a73b6ab6.jpg',
+  '/Screeny/bb917423-d87d-4175-937a-315e70bb282c.jpg',
+];
 
 const reasons = {
   pl: [
@@ -516,7 +529,7 @@ const content: Record<Locale, ContentMap> = {
 };
 
 export function SiteContent({ page }: SiteContentProps) {
-  const [language, setLanguage] = useState<Locale>('en');
+  const [language, setLanguage] = useState<Locale>('pl');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const currentPage = page;
 
@@ -688,48 +701,24 @@ export function SiteContent({ page }: SiteContentProps) {
 
           <section id="screenshots" className="rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:p-12" data-reveal>
             <div className="mb-8 max-w-2xl">
-              <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Prezentacja aplikacji' : 'Product preview'}</p>
+              <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Screeny' : 'Screens'}</p>
               <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
                 {language === 'pl' ? 'Produkt premium, który wspiera codzienną pracę trenera, mnóstwo narzędzi w jednej aplikacji.' : 'A premium product that supports the everyday work of a coach, with a wide range of tools in one app.'}
               </h2>
             </div>
-            <div className="grid gap-6 lg:grid-cols-2">
-              <div className="rounded-[1.75rem] border border-white/10 bg-black/25 p-5">
-                <div className="mx-auto flex max-w-[320px] justify-center rounded-[2.2rem] border border-white/10 bg-zinc-950 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
-                  <div className="w-full rounded-[1.7rem] border border-white/10 bg-black p-2">
-                    <div className="mb-3 flex justify-center">
-                      <div className="h-5 w-24 rounded-full bg-black/80" />
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {phoneScreens.map((screen) => (
+                <div key={screen} className="rounded-[1.75rem] border border-white/10 bg-black/25 p-4">
+                  <div className="mx-auto flex max-w-[240px] justify-center rounded-[2rem] border border-white/10 bg-zinc-950 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+                    <div className="w-full rounded-[1.6rem] border border-white/10 bg-black p-2">
+                      <div className="mb-3 flex justify-center">
+                        <div className="h-5 w-24 rounded-full bg-black/80" />
+                      </div>
+                      <Image src={screen} alt="OSS app screen preview" width={720} height={1280} className="h-[420px] w-full rounded-[1.15rem] object-cover" />
                     </div>
-                    <Image src="/Screeny/0e39e543-923f-4e69-97c3-32484dc4722d (1).jpg" alt="OSS coach dashboard preview" width={720} height={1280} className="h-[480px] w-full rounded-[1.2rem] object-cover" />
                   </div>
                 </div>
-                <h3 className="mt-5 text-xl font-semibold text-white">
-                  {language === 'pl' ? 'Panel trenera' : 'Coach dashboard'}
-                </h3>
-                <p className="mt-3 leading-7 text-zinc-300">
-                  {language === 'pl'
-                    ? 'Filmy z mnóstwem technik z każdej pozycji, na każdy poziom zaawansowania, krótkie i konkretne, wszystko podzielone na kategorie.'
-                    : 'Videos packed with techniques from every position, for every level, short and practical, all organized by category.'}
-                </p>
-              </div>
-              <div className="rounded-[1.75rem] border border-white/10 bg-black/25 p-5">
-                <div className="mx-auto flex max-w-[320px] justify-center rounded-[2.2rem] border border-white/10 bg-zinc-950 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
-                  <div className="w-full rounded-[1.7rem] border border-white/10 bg-black p-2">
-                    <div className="mb-3 flex justify-center">
-                      <div className="h-5 w-24 rounded-full bg-black/80" />
-                    </div>
-                    <Image src="/Screeny/cb0a21e9-b502-4e9f-bfaf-5fe1c6b63a17 (1).jpg" alt="OSS athlete view preview" width={720} height={1280} className="h-[480px] w-full rounded-[1.2rem] object-cover" />
-                  </div>
-                </div>
-                <h3 className="mt-5 text-xl font-semibold text-white">
-                  {language === 'pl' ? 'Widok zawodnika' : 'Athlete experience'}
-                </h3>
-                <p className="mt-3 leading-7 text-zinc-300">
-                  {language === 'pl'
-                    ? 'Twórz treningi, wybieraj techniki, twórz własne bazy technik, ustalaj czas trwania, używaj technik podczas zajęć, udostępniaj trening grupie, bądź jednemu adeptowi.'
-                    : 'Create training sessions, choose techniques, build your own technique libraries, set durations, use techniques during classes, and share a session with a group or with one athlete.'}
-                </p>
-              </div>
+              ))}
             </div>
           </section>
 
