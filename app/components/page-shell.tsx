@@ -16,14 +16,12 @@ export function PageShell({ children, language, setLanguage }: PageShellProps) {
           { href: "/", label: "Strona główna" },
           { href: "/privacy-policy", label: "Polityka prywatności" },
           { href: "/terms", label: "Regulamin" },
-          { href: "/delete-account", label: "Usunięcie konta" },
           { href: "/contact", label: "Kontakt" },
         ]
       : [
           { href: "/", label: "Home" },
           { href: "/privacy-policy", label: "Privacy Policy" },
           { href: "/terms", label: "Terms" },
-          { href: "/delete-account", label: "Delete account" },
           { href: "/contact", label: "Contact" },
         ];
 

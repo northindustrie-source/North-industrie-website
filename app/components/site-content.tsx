@@ -220,7 +220,7 @@ const content: Record<Locale, ContentMap> = {
       ctaSecondary: 'Poznaj OSS',
       aboutTitle: 'Minimalistycznie. Spójnie. Efektywnie.',
       aboutBody:
-        'North Industrie buduje premiumowe doświadczenia cyfrowe dla sportu i biznesu. Łączymy przejrzysty design z praktycznymi workflowami, aby trenerzy mogli skupić się na pracy z ludźmi, a nie na zarządzaniu narzędziami.',
+        'North Industrie buduje premiumowe doświadczenia cyfrowe dla sportu i biznesu. Łączymy przejrzysty design z praktycznymi workflowami, aby trenerzy mogli skupić się na pracy z ludźmi, a nie na zarządzaniu narzędziami. Wszystko jest w jednej aplikacji.',
       featuresTitle: 'Funkcje, które naprawdę wspierają codzienną pracę klubu',
       whyTitle: 'Dlaczego OSS',
       contactTitle: 'Chcesz wdrożyć OSS w swoim klubie?',
@@ -372,7 +372,7 @@ const content: Record<Locale, ContentMap> = {
       ctaSecondary: 'Explore OSS',
       aboutTitle: 'Minimal by design. Clear in practice.',
       aboutBody:
-        'North Industrie builds premium digital experiences for sport and business. We combine calm design with practical workflows so coaches can focus on working with people instead of managing tools.',
+        'North Industrie builds premium digital experiences for sport and business. We combine calm design with practical workflows so coaches can focus on working with people instead of managing tools. Everything lives in one app.',
       featuresTitle: 'Features that support the daily work of a club',
       whyTitle: 'Why OSS',
       contactTitle: 'Would you like to bring OSS into your club?',
@@ -669,8 +669,8 @@ export function SiteContent({ page }: SiteContentProps) {
                 </h2>
                 <p className="mt-4 text-lg leading-8 text-zinc-300">
                   {language === 'pl'
-                    ? 'To krótkie wideo pokazuje, jak platforma daje trenerom i zawodnikom spokojny, uporządkowany workflow od pierwszego kontaktu po codzienne planowanie.'
-                    : 'This short video shows how the platform gives coaches and athletes a calm, structured workflow from first contact through daily planning.'}
+                    ? 'Wciągnij się w ułatwiający system pracy klubu i współpracy ze swoimi podopiecznymi — a cała historia zaczyna się tak…'
+                    : 'Step into a system that makes club work and collaboration with your athletes easier — and the whole story begins like this…'}
                 </p>
               </div>
               <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/25 p-3 shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
@@ -690,7 +690,7 @@ export function SiteContent({ page }: SiteContentProps) {
             <div className="mb-8 max-w-2xl">
               <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Prezentacja aplikacji' : 'Product preview'}</p>
               <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
-                {language === 'pl' ? 'Produkt, który wygląda premium i wspiera codzienną pracę' : 'A product that feels premium and supports everyday coaching work'}
+                {language === 'pl' ? 'Produkt premium, który wspiera codzienną pracę trenera, mnóstwo narzędzi w jednej aplikacji.' : 'A premium product that supports everyday coaching work, with lots of tools in one app.'}
               </h2>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
@@ -708,8 +708,8 @@ export function SiteContent({ page }: SiteContentProps) {
                 </h3>
                 <p className="mt-3 leading-7 text-zinc-300">
                   {language === 'pl'
-                    ? 'Zarządzaj grupami, planami treningowymi, frekwencją i historią bez rozpraszania uwagi.'
-                    : 'Manage groups, plans, attendance, and history without adding friction to your daily routine.'}
+                    ? 'Filmy z mnóstwem technik z każdej pozycji, na każdy poziom zaawansowania, krótkie i konkretne, wszystko podzielone na kategorie.'
+                    : 'Videos with lots of techniques from every position, for every skill level, short and concrete, all organized by category.'}
                 </p>
               </div>
               <div className="rounded-[1.75rem] border border-white/10 bg-black/25 p-5">
@@ -726,8 +726,8 @@ export function SiteContent({ page }: SiteContentProps) {
                 </h3>
                 <p className="mt-3 leading-7 text-zinc-300">
                   {language === 'pl'
-                    ? 'Zawodnicy mają szybki dostęp do poprzedniego treningu, nadchodzących planów i prywatnych materiałów technicznych.'
-                    : 'Athletes get immediate access to the previous session, upcoming plans, and private technique materials.'}
+                    ? 'Twórz treningi, wybieraj techniki, twórz własne bazy technik, ustalaj czas trwania, używaj technik podczas zajęć, udostępniaj trening grupie, bądź jednemu adeptowi.'
+                    : 'Create training sessions, choose techniques, build your own technique libraries, set durations, use techniques during classes, share a session with a group or with one athlete.'}
                 </p>
               </div>
             </div>

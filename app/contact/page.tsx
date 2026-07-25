@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SiteContent } from "../components/site-content";
+import { ContactContent } from "../components/contact-content";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <SiteContent page="home" />;
+  return <ContactContent />;
 }
