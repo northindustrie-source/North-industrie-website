@@ -629,13 +629,39 @@ export function SiteContent({ page }: SiteContentProps) {
             </div>
           </section>
 
-          <section className="grid gap-6 lg:grid-cols-3" data-reveal>
-            {stats[language].map((stat) => (
-              <div key={stat.label} className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl">
-                <p className="text-3xl font-semibold text-white">{stat.value}</p>
-                <p className="mt-2 text-sm uppercase tracking-[0.28em] text-zinc-400">{stat.label}</p>
+          <section className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 to-black/20 p-6 sm:p-8" data-reveal>
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl">
+                <p className="text-sm uppercase tracking-[0.35em] text-[#ff8f8f]">{language === 'pl' ? 'Dostępne wkrótce' : 'Coming soon'}</p>
+                <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
+                  {language === 'pl' ? 'Pobierz wkrótce z Google Play i App Store' : 'Download soon from Google Play and the App Store'}
+                </h2>
               </div>
-            ))}
+              <div className="flex flex-wrap gap-3">
+                <a href="#" className="flex items-center gap-3 rounded-[1rem] border border-white/10 bg-black/20 px-4 py-3 transition hover:border-[#ff4d4d]/60 hover:bg-white/10">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-[#ff8f8f]">
+                    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
+                      <path d="M3 2.75A.75.75 0 0 1 3.75 2h10.5a.75.75 0 0 1 .75.75v6.5H3.75A.75.75 0 0 1 3 8.5V2.75Zm10.5 8.25v10.5a.75.75 0 0 0 .75.75h4.5A.75.75 0 0 0 19.5 21V10.75H13.5Zm-10.5 0h10.5v10.5a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V11Zm13.5-8.25h4.5A.75.75 0 0 1 21 3.5v4.5h-4.5V3.5a.75.75 0 0 0-.75-.75Z" />
+                    </svg>
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-400">{language === 'pl' ? 'Dostępne wkrótce' : 'Coming soon'}</p>
+                    <p className="text-sm font-semibold text-white">Google Play</p>
+                  </div>
+                </a>
+                <a href="#" className="flex items-center gap-3 rounded-[1rem] border border-white/10 bg-black/20 px-4 py-3 transition hover:border-[#ff4d4d]/60 hover:bg-white/10">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-[#ff8f8f]">
+                    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
+                      <path d="M16.24 8.6c-.1-1.94 1.59-2.88 1.66-2.92-.91-1.33-2.32-1.52-2.83-1.54-1.2-.12-2.35.71-2.97.71-.62 0-1.58-.69-2.59-.67-1.33.02-2.56.77-3.24 1.96-1.38 2.39-.35 5.92 1 7.86.66.95 1.46 2.02 2.5 1.98 1-.04 1.38-.64 2.58-.64 1.2 0 1.54.64 2.59.62 1.07-.02 1.74-.97 2.39-1.93.76-1.11 1.07-2.18 1.08-2.24-.02-.01-2.07-.8-2.07-3.18ZM14.46 2.4c.51-.62.85-1.48.75-2.34-.72.03-1.59.48-2.1 1.1-.46.53-.87 1.38-.76 2.2.81.06 1.63-.42 2.11-0.96Z" />
+                    </svg>
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-400">{language === 'pl' ? 'Dostępne wkrótce' : 'Coming soon'}</p>
+                    <p className="text-sm font-semibold text-white">App Store</p>
+                  </div>
+                </a>
+              </div>
+            </div>
           </section>
 
           <section id="about" className="grid gap-8 rounded-[2rem] border border-white/10 bg-white/5 p-8 transition duration-300 hover:border-[#ff4d4d]/30 lg:grid-cols-[0.9fr_1.1fr] lg:p-12" data-reveal>
